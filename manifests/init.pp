@@ -10,6 +10,9 @@ class rssh (
   $users       = []
 ) {
   if $facts['os']['release']['major'] > '8' {
+    package { 'glibc.i686':
+      ensure => present,
+    }
     exec { 'rssh-download':
       command => 'wget http://prdownloads.sourceforge.net/rssh/rssh-2.1.1-1.RH9.i386.rpm?download -O /tmp/rssh-2.1.1-1.RH9.i386.rpm',
       path    => '/usr/sbin:/usr/bin:/sbin:/bin',
